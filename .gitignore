@@ -2,3 +2,4 @@ __pycache__
 /Include
 /Scripts
 /Lib
+pyvenv.cfg
