@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Team</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #3498db, #8e44ad);
+            background-size: 400% 400%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 1s ease;
+            animation: gradientBG 15s ease infinite;
+            cursor: url("../static/icons8-select-cursor-30.png"), auto;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .quiz-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #fffde7, #e0f7fa);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            overflow-y: auto;
+            max-height: 90vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #7190f3, #302ddf, #7190f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 3s ease infinite;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: #4e4e4e;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        input {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px auto;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            font-family: 'Poppins','sans-serif';
+        }
+
+        input:focus {
+            border-color: #1923ac;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.2);
+            outline: none;
+        }
+
+        button {
+            padding: 8px;
+            background-color: rgb(0, 0, 102);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 80%;
+            max-width: 150px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px auto;
+            display: block;
+        }
+
+        button:hover {
+            background-color: rgb(0, 0, 165);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 31, 63, 0.2);
+        }
+
+        button:active {
+            transform: scale(1);
+            background-color: rgb(0, 0, 102);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 15px;
+            }
+
+            input, button {
+                padding: 10px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quiz-container {
+                padding: 10px;
+                width: 95%;
+            }
+
+            input, button {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .quiz-container::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+
+        .quiz-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .quiz-container::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 70px;
+        }
+
+        .quiz-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .quiz-container {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Team Registration</h1>
+        <form action="/start_quiz" method="post">
+            <label for="team_name">Team Name</label>
+            <input type="text" id="team_name" name="team_name" placeholder="Team Name" required>
+            
+            <label for="participant1_name">Participant 1 Name</label>
+            <input type="text" id="participant1_name" name="participant1_name" placeholder="Participant 1 Name" required>
+            
+            <label for="participant2_name">Participant 2 Name</label>
+            <input type="text" id="participant2_name" name="participant2_name" placeholder="Participant 2 Name" required>
+            
+            <label for="participant1_mobile">Participant 1 Mobile</label>
+            <input type="tel" id="participant1_mobile" name="participant1_mobile" placeholder="Participant 1 Mobile" required>
+            
+            <label for="participant2_mobile">Participant 2 Mobile</label>
+            <input type="tel" id="participant2_mobile" name="participant2_mobile" placeholder="Participant 2 Mobile" required>
+            
+            <button type="submit">Start Quiz</button>
+        </form>
+    </div>
+</body>
+</html>

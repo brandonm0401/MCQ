@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #3498db, #8e44ad);
+            background-size: 400% 400%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: gradientBG 15s ease infinite;
+            cursor: url("../static/icons8-select-cursor-30.png"), auto;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .welcome-container {
+            text-align: center;
+            color: #fff;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .welcome-container h1 {
+            font-size: 3rem; /* Bigger and bolder */
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        /* Keyframes for fade in and out */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s forwards;
+        }
+
+        .fade-out {
+            animation: fadeOut 2s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1 id="thank-you-text">THANK YOU, Team {{ team_name }}</h1>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const thankYouText = document.getElementById('thank-you-text');
+
+            function showThankYouMessage() {
+                // Fade-in effect for thank you text
+                thankYouText.classList.add('fade-in');
+                thankYouText.style.display = 'block';
+            }
+            showThankYouMessage();
+        });
+    </script>
+</body>
+</html>

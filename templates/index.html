@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Code Board</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #3498db, #8e44ad);
+            background-size: 400% 400%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 1s ease;
+            animation: gradientBG 15s ease infinite;
+            cursor: url("../static/icons8-select-cursor-30.png"), auto;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #fffde7, #e0f7fa);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 700px;
+            box-sizing: border-box;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            text-align: center;
+        }
+
+        h1, h2, h3, h4 {
+            margin: 10px 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #9eb4fc, #232188);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 3s ease infinite;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: #8a8a8a;
+        }
+
+        @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        button {
+            padding: 12px;
+            background-color: rgb(0, 0, 102);
+            color: white;
+            border: none;
+            font-family: 'Poppins',sans-serif;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 80%;
+            max-width: 250px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px auto;
+            display: block;
+        }
+
+        button:hover {
+            background-color: rgb(0, 0, 165);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 31, 63, 0.2);
+        }
+
+        button:active {
+            transform: scale(1);
+            background-color: rgb(0, 0, 102);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quiz-container {
+                padding: 10px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            button {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <img src="../static/images/Tech 31 Years Logo.png" alt="Institution Logo" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <h2>CYBERTRIX 2K24 - A National Level Technical Symposium</h2>
+        <h1>CODE BOARD</h1>
+        <h2>Round-1 Technical MCQ</h2>
+        <form id="quizForm" action="/register" method="get">
+            <button type="submit">Click here to register</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('quizForm');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                
+                const container = document.querySelector('.quiz-container');
+                container.style.transform = 'scale(0.95)';
+                container.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.3)';
+                document.body.style.backgroundColor = '#cce7ff';
+
+                setTimeout(() => {
+                    form.submit(); 
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

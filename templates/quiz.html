@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODE BOARD</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #3498db, #8e44ad);
+            background-size: 400% 400%;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            animation: gradientBG 15s ease infinite;
+            cursor: url("../static/icons8-select-cursor-30.png"), auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        form {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        form::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+
+        form::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        form::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 70px;
+        }
+
+        form::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        form {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #4b4b4b;
+            cursor: pointer;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease, border 0.3s ease;
+        }
+
+        label:hover {
+            border: 2px solid #0097a7;
+        }
+
+        .selected {
+            background-color: #e0f7fa;
+            border: 2px solid #0097a7;
+            color: #00796b;
+        }
+
+        button {
+            padding: 12px;
+            background-color: rgb(0, 0, 102);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 150px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 20px auto;
+            display: block;
+        }
+
+        button:hover {
+            background-color: rgb(0, 0, 165);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 31, 63, 0.2);
+        }
+
+        button:active {
+            transform: scale(1);
+            background-color: rgb(0, 0, 102);
+        }
+
+        pre, code {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <form id="quiz-form" action="/quiz/{{ question_id }}" method="post">
+        <input type="hidden" name="team_name" value="{{ team_name }}">
+        <input type="hidden" name="participant1_name" value="{{ participant1_name }}">
+        <input type="hidden" name="participant2_name" value="{{ participant2_name }}">
+        <input type="hidden" name="participant1_mobile" value="{{ participant1_mobile }}">
+        <input type="hidden" name="participant2_mobile" value="{{ participant2_mobile }}">
+
+        <h3>
+            <pre><code>{{ question_id }}. {{ question['question'] }}</code></pre>
+        </h3>
+
+        <fieldset>
+            <legend>Select an Option:</legend>
+            <label id="option_a_label" for="option_a" class="{% if selected_option == 'a' %}selected{% endif %}">a) {{ question['option_a'] }}</label>
+            <input type="radio" id="option_a" name="selected_option" value="a" style="display:none;" {% if selected_option == 'a' %} checked{% endif %}>
+            
+            <label id="option_b_label" for="option_b" class="{% if selected_option == 'b' %}selected{% endif %}">b) {{ question['option_b'] }}</label>
+            <input type="radio" id="option_b" name="selected_option" value="b" style="display:none;" {% if selected_option == 'b' %} checked{% endif %}>
+            
+            <label id="option_c_label" for="option_c" class="{% if selected_option == 'c' %}selected{% endif %}">c) {{ question['option_c'] }}</label>
+            <input type="radio" id="option_c" name="selected_option" value="c" style="display:none;" {% if selected_option == 'c' %} checked{% endif %}>
+            
+            <label id="option_d_label" for="option_d" class="{% if selected_option == 'd' %}selected{% endif %}">d) {{ question['option_d'] }}</label>
+            <input type="radio" id="option_d" name="selected_option" value="d" style="display:none;" {% if selected_option == 'd' %} checked{% endif %}>
+        </fieldset>
+
+        <br>
+        <div class="navigation-buttons">
+            {% if not is_first_question %}
+            <button type="submit" name="prev" value="true"><< Prev</button>
+            {% endif %}
+            <button type="submit">{{ 'Submit Quiz' if is_last_question else 'Next >>' }}</button>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const labels = document.querySelectorAll('label');
+            const hiddenInputs = document.querySelectorAll('input[type="radio"]');
+
+            labels.forEach(label => {
+                label.addEventListener('click', function() {
+                    labels.forEach(lbl => lbl.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    const correspondingRadio = document.getElementById(this.getAttribute('for'));
+                    correspondingRadio.checked = true;
+                });
+            });
+
+            document.getElementById('quiz-form').addEventListener('submit', function(event) {
+                let selected = false;
+                hiddenInputs.forEach(input => {
+                    if (input.checked) {
+                        selected = true;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

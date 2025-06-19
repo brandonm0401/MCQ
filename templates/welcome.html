@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #3498db, #8e44ad);
+            background-size: 400% 400%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: gradientBG 15s ease infinite;
+            cursor: url("../static/icons8-select-cursor-30.png"), auto;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .welcome-container {
+            text-align: center;
+            color: #fff;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .welcome-container h1, .welcome-container p {
+            font-size: 2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .welcome-container h1 {
+            font-size: 3rem; /* Bigger and bolder */
+            font-weight: bold;
+            top: 40%; /* Slightly adjusted upward */
+        }
+
+        .welcome-container p {
+            display: none;
+            font-size: 2rem;
+            top: 45%; /* Slightly adjusted upward */
+        }
+        /* Keyframes for fade in and out */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s forwards;
+        }
+
+        .fade-out {
+            animation: fadeOut 2s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1 id="welcome-text">Welcome {{ team_name }}</h1>
+        <p id="loading-text">We're getting the quiz ready for you</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcomeText = document.getElementById('welcome-text');
+            const loadingText = document.getElementById('loading-text');
+
+            function startAnimations() {
+                // Fade-in effect for welcome text
+                welcomeText.classList.add('fade-in');
+                welcomeText.style.display = 'block';
+
+                // Fade-out effect for welcome text after some time
+                setTimeout(() => {
+                    welcomeText.classList.remove('fade-in');
+                    welcomeText.classList.add('fade-out');
+
+                    // After welcome text fades out, show the loading text
+                    setTimeout(() => {
+                        welcomeText.style.display = 'none';
+                        loadingText.style.display = 'block';
+                        loadingText.classList.add('fade-in');
+
+                        // Fade-out effect for loading text before redirection
+                        setTimeout(() => {
+                            loadingText.classList.remove('fade-in');
+                            loadingText.classList.add('fade-out');
+
+                            // Redirect after loading text fades out
+                            setTimeout(() => {
+                                window.location.href = "/quiz/1";
+                            }, 2000); // Match the fade-out duration
+                        }, 3000); // Time to show loading text before fading out
+                    }, 2000); // Match the fade-out duration of the welcome text
+                }, 3000); // Duration to display the welcome text
+            }
+
+            // Start animations
+            startAnimations();
+        });
+    </script>
+</body>
+</html>
